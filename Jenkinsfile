@@ -14,14 +14,14 @@ pipeline {
             steps {
                 script {
                     // Stop and remove existing containers if any
-                    bat "docker stop frontend || true"
-                    bat "docker rm frontend || true"
-                    bat "docker stop backend || true"
-                    bat "docker rm backend || true"
+                    bat "docker stop frontend || exit 0"
+                    bat "docker rm frontend || exit 0"
+                    bat "docker stop backend || exit 0"
+                    bat "docker rm backend || exit 0"
 
                     // Remove old images if exist
-                    bat "docker rmi -f fullstack-frontend || true"
-                    bat "docker rmi -f fullstack-backend || true"
+                    bat "docker rmi -f fullstack-frontend || exit 0"
+                    bat "docker rmi -f fullstack-backend || exit 0"
                 }
             }
         }
