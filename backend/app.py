@@ -6,7 +6,7 @@ CORS(app)  # allow cross-origin requests from frontend
 
 @app.route('/api/message')
 def get_message():
-    return jsonify({'message': 'Hello from Flask Backend!'})
+    return jsonify({'message': 'Hello from Backend!'})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=9000)   # Changed to 9000
