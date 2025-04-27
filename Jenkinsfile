@@ -45,10 +45,8 @@ pipeline {
         stage('Run Containers') {
             steps {
                 script {
-                    // Backend on 9000
                     bat "docker run -d -p 9000:9000 --name backend fullstack-backend"
 
-                    // Frontend (nginx) on 9090
                     bat "docker run -d -p 9090:80 --name frontend fullstack-frontend"
                 }
             }
