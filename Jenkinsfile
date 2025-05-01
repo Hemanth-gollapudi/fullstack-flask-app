@@ -63,6 +63,30 @@ pipeline {
             }
         }
 
+        stage('Run Backend API Test') {
+            steps {
+                script {
+                    sh '''
+                        echo "🔧 Building backend image for testing..."
+                        docker build --no-cache -t test-backend ./backend
+
+                        echo "🚀 Running temporary test backend container..."
+                        docker run -d -p 9000:9000 --name test-backend test-backend
+
+                        echo "⏳ Waiting for backend to start..."
+                        sleep 5
+
+                        echo "🧪 Running API test (test/test_front.py)..."
+                        python3 test/test_front.py
+
+                        echo "🧼 Cleaning up test container..."
+                        docker stop test-backend
+                        docker rm test-backend
+                    '''
+                }
+            }
+        }
+
         stage('Clean Old Containers and Images') {
             steps {
                 script {
@@ -95,7 +119,7 @@ pipeline {
             }
         }
 
-        stage('Run Containers') {
+        stage('Run Final Containers') {
             steps {
                 script {
                     sh '''
