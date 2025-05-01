@@ -68,7 +68,7 @@ pipeline {
                 script {
                     sh '''
                         echo "Running tests..."
-                        python3 test/test_front.py
+                        pytest test/test_front.py
                     '''
                 }
             }
