@@ -133,8 +133,8 @@ pipeline {
         stage('Build and Test Backend') {
             steps {
                 dir('backend') {
-                    sh 'pip install -r requirements.txt'
-                    sh 'pytest tests/'
+                    bat 'pip install -r requirements.txt'
+                    bat 'pytest tests/'
                 }
             }
         }
